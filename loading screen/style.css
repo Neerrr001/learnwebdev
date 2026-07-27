@@ -10,6 +10,9 @@ body{
     min-height: 100vh;
 }
 .loading{
+    display:flex; 
+    flex-direction: column;
+    align-items: center;
     max-width: 50%;
     line-height: 1.4;
     font-size:1.2rem;
@@ -22,4 +25,27 @@ body{
     color:rgba(189,189,189,1);
     margin: 0.6rem 0 2rem 0; 
     display:block; 
+}
+.loading__anim{
+    height:35px; 
+    width:35px;
+    display:inline-block;
+    border: 5px solid rgba(189, 189, 189, 0.25);
+    border-top-color: rgba(3,155,229,1);
+    border-left-color: rgba(3,155,229,1);
+    border-radius:50%;
+    animation: rotate 700ms infinite linear; 
+}
+.loading img{
+    width:70px; 
+    height:70px; 
+    border-radius:50%;
+    margin-bottom: 30px; 
+    display:block; 
+    object-fit:cover;
+}
+@keyframes rotate {
+    to{
+        transform: rotate(1turn);
+    }
 }
