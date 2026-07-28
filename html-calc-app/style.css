@@ -10,3 +10,24 @@ html{
 body{
     margin:0
 }
+
+/* responsive images */
+embed, iframe, img, object, video{
+    max-width:100%;
+}
+
+h1, h2, h3, h4, h5, h6,ul, ol li, p, pre, blockquote, figure, hr{
+    margin:0; 
+    padding-right:0; 
+    padding-left:0; 
+}
+
+a{
+    text-decoration: none; 
+}
+a:focus{
+    outline:none;
+}
+h1,h2,h3,h4,h5,h6{
+    display:block;
+}
