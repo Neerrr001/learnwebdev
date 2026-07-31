@@ -8,6 +8,7 @@ keys.addEventListener("click", (e) => {
     const action = key.dataset.action
     const keyContent = key.textContent
     const displayedNum = display.textContent
+    const previousKeyType = calculator.dataset.previousKeyType
     console.log(e,key, action, keyContent, displayedNum)
 
     if(!action){
@@ -24,12 +25,16 @@ keys.addEventListener("click", (e) => {
     if(action === 'add' || action === 'subtract' || action === 'multiply' || action === 'divide'
     ){
       key.classList.add('is-depressed')
+
+      //add a custom attribute
+      calculator.dataset.previousKeyType = 'operator'
     }
     
     //remove .is-depressed class from all keys
     Array.from(key.parentNode.children).forEach(
       k => k.classList.remove('is-depressed')
     )
+
 
 
   }
