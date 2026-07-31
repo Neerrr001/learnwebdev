@@ -8,7 +8,7 @@ keys.addEventListener("click", (e) => {
     const action = key.dataset.action
     const keyContent = key.textContent
     const displayedNum = display.textContent
-    console.log(key, action, keyContent, displayedNum)
+    console.log(e,key, action, keyContent, displayedNum)
 
     if(!action){
       if(displayedNum === '0'){
@@ -17,6 +17,20 @@ keys.addEventListener("click", (e) => {
         display.textContent = displayedNum + keyContent;
       }
     }
+
+    if(action === 'decimal'){
+      display.textContent = displayedNum+'.';
+    }
+    if(action === 'add' || action === 'subtract' || action === 'multiply' || action === 'divide'
+    ){
+      key.classList.add('is-depressed')
+    }
+    
+    //remove .is-depressed class from all keys
+    Array.from(key.parentNode.children).forEach(
+      k => k.classList.remove('is-depressed')
+    )
+
 
   }
 });
