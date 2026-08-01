@@ -28,6 +28,8 @@ keys.addEventListener("click", (e) => {
 
       //add a custom attribute
       calculator.dataset.previousKeyType = 'operator'
+      calculator.dataset.firstValue = displayedNum
+      calculator.dataset.operator = action ; 
     }
     
     //remove .is-depressed class from all keys
@@ -35,6 +37,16 @@ keys.addEventListener("click", (e) => {
       k => k.classList.remove('is-depressed')
     )
 
+    //when user hits = btn
+    if(action === 'calculate'){
+      const secondValue = displayedNum 
+      const operator = calculator.dataset.operator
+      const firstValue = calculator.dataset.firstValue
+
+      display.textContent = calculate(firstValue, operator, secondValue);
+    }
+
+    c
 
 
   }
