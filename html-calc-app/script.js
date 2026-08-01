@@ -42,7 +42,10 @@ keys.addEventListener("click", (e) => {
     if(action === 'decimal'){
       if(!display.textContent.includes('.')){
         display.textContent = displayedNum+'.';
+      }else if(previousKeyType === 'operator'){
+        display.textContent = '0.'
       }
+      calculator.dataset.previousKeyType = 'decimal'
     }
     if(action === 'add' || action === 'subtract' || action === 'multiply' || action === 'divide'
     ){
@@ -65,12 +68,16 @@ keys.addEventListener("click", (e) => {
       const secondValue = displayedNum 
       const operator = calculator.dataset.operator
       const firstValue = calculator.dataset.firstValue
+      calculator.dataset.previousKeyType = 'calculate'
+
 
       display.textContent = calculate(firstValue, operator, secondValue)
     } 
 
     if(action === 'clear'){
       display.textContent = '0'; 
+      calculator.dataset.previousKeyType = 'clear'
+
     }
 
 
