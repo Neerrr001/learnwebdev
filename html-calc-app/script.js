@@ -40,7 +40,9 @@ keys.addEventListener("click", (e) => {
     }
 
     if(action === 'decimal'){
-      display.textContent = displayedNum+'.';
+      if(!display.textContent.includes('.')){
+        display.textContent = displayedNum+'.';
+      }
     }
     if(action === 'add' || action === 'subtract' || action === 'multiply' || action === 'divide'
     ){
@@ -66,6 +68,13 @@ keys.addEventListener("click", (e) => {
 
       display.textContent = calculate(firstValue, operator, secondValue)
     } 
+
+    if(action === 'clear'){
+      display.textContent = '0'; 
+    }
+
+
+
   }
 
   
