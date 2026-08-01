@@ -2,6 +2,26 @@ const calculator = document.querySelector(".calculator");
 const keys = calculator.querySelector(".calculator__keys");
 const display = calculator.querySelector(".calculator__display")
 
+const calculate = (n1, operator, n2) => {
+      let res = ''
+      let newn1 = parseFloat(n1)
+      let newn2 = parseFloat(n2)
+      if(operator === 'add'){
+        res = newn1 + newn2; 
+
+      }else if(operator === 'subtract'){
+        res = newn1 - newn2; 
+
+      }else if(operator === 'multiply'){
+        res = newn1 * newn2; 
+
+      }else{ //divide
+        res = newn1 / newn2;
+      }
+      console.log(res)
+      return res; 
+    }
+
 keys.addEventListener("click", (e) => {
   if(e.target.matches('button')){
     const key = e.target
@@ -25,6 +45,7 @@ keys.addEventListener("click", (e) => {
     if(action === 'add' || action === 'subtract' || action === 'multiply' || action === 'divide'
     ){
       key.classList.add('is-depressed')
+      display.textContent = 0;
 
       //add a custom attribute
       calculator.dataset.previousKeyType = 'operator'
@@ -43,11 +64,9 @@ keys.addEventListener("click", (e) => {
       const operator = calculator.dataset.operator
       const firstValue = calculator.dataset.firstValue
 
-      display.textContent = calculate(firstValue, operator, secondValue);
-    }
-
-    c
-
-
+      display.textContent = calculate(firstValue, operator, secondValue)
+    } 
   }
+
+  
 });
