@@ -3,7 +3,7 @@ const keys = calculator.querySelector(".calculator__keys");
 const display = calculator.querySelector(".calculator__display")
 
 const calculate = (n1, operator, n2) => {
-      let res = ''
+      let res = 0
       let newn1 = parseFloat(n1)
       let newn2 = parseFloat(n2)
       if(operator === 'add'){
@@ -19,7 +19,7 @@ const calculate = (n1, operator, n2) => {
         res = newn1 / newn2;
       }
       console.log(res)
-      return res; 
+      return Number(res.toFixed(8)); 
     }
 
 keys.addEventListener("click", (e) => {
