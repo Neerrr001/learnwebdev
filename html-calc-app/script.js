@@ -40,6 +40,7 @@ keys.addEventListener("click", (e) => {
       else{
         display.textContent = displayedNum + keyContent;
       }
+      calculator.dataset.previousKeyType = 'number'
     }
 
     if(action === 'decimal'){
@@ -62,7 +63,14 @@ keys.addEventListener("click", (e) => {
       const firstValue = calculator.dataset.firstValue
 
       if(firstValue && operator && previousKeyType!=='operator'){
-        display.textContent = calculate(firstValue, operator, secondValue)
+        const calcValue = calculate(firstValue, operator, secondValue)
+        display.textContent = calcValue
+
+        //update calcValue as firstVal
+        calculator.dataset.firstValue = calcValue; 
+      }else{
+        //if there are no calc, then
+        calculator.dataset.firstValue = displayedNum
       }
       key.classList.add('is-depressed')
 
@@ -75,13 +83,15 @@ keys.addEventListener("click", (e) => {
     
     //when user hits = btn
     if(action === 'calculate'){
-      const secondValue = displayedNum 
-      const operator = calculator.dataset.operator
-      const firstValue = calculator.dataset.firstValue
-      calculator.dataset.previousKeyType = 'calculate'
 
-
-      display.textContent = calculate(firstValue, operator, secondValue)
+        const secondValue = displayedNum 
+        const operator = calculator.dataset.operator
+        const firstValue = calculator.dataset.firstValue
+        calculator.dataset.previousKeyType = 'calculate'
+        
+        
+        display.textContent = calculate(firstValue, operator, secondValue)
+     
     } 
 
     if(action === 'clear'){
@@ -90,9 +100,13 @@ keys.addEventListener("click", (e) => {
 
     }
 
-
+    console.log({
+      display: display.textContent, 
+      firstVal: calculator.dataset.firstValue,
+      operator:calculator.dataset.operator,
+      previousKeyType: calculator.dataset.previousKeyType
+    })
 
   }
-
   
 });
