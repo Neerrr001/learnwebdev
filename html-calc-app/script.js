@@ -92,20 +92,21 @@ keys.addEventListener("click", (e) => {
     } 
 
     if(action === 'clear'){
-      display.textContent = '0'; 
+      if(key.textContent === 'AC'){
+        delete calculator.dataset.firstValue 
+        delete calculator.dataset.operator 
+      }else{
+        key.textContent = 'AC'
+      }
 
-      delete calculator.dataset.firstValue 
-      delete calculator.dataset.operator 
+      display.textContent = '0'
       calculator.dataset.previousKeyType = 'clear'
 
     }
-
-    console.log({
-      display: display.textContent, 
-      firstValue: calculator.dataset.firstValue,
-      operator:calculator.dataset.operator,
-      previousKeyType: calculator.dataset.previousKeyType
-    })
+    if(action !== 'clear'){
+      const clearButton = calculator.querySelector('[data-action=clear]')
+      clearButton.textContent = 'CE'
+    }
 
   }
   
