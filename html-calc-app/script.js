@@ -100,6 +100,9 @@ keys.addEventListener("click", (e) => {
 
     if(action === 'clear'){
       display.textContent = '0'; 
+
+      delete calculator.dataset.firstValue 
+      delete calculator.dataset.operator 
       calculator.dataset.previousKeyType = 'clear'
 
     }
@@ -114,3 +117,7 @@ keys.addEventListener("click", (e) => {
   }
   
 });
+
+
+
+//there is bug. when i press 1 + 2 = 3, then if i keep pressing = then it just keeps adding whatever is present on the display.textContent. Need to fix that as well. 
