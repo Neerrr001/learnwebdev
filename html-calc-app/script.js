@@ -77,10 +77,15 @@ keys.addEventListener("click", (e) => {
     //when user hits = btn
     if(action === 'calculate'){
 
-        const secondValue = displayedNum 
+      let secondValue = ''
+       if(previousKeyType !== 'calculate'){
+        secondValue = displayedNum;
+        calculator.dataset.modifierval = secondValue
+       }else{
+        secondValue = calculator.dataset.modifierval
+       }
         const operator = calculator.dataset.operator
         const firstValue = calculator.dataset.firstValue
-        calculator.dataset.previousKeyType = 'calculate'
         
         if(firstValue != "0" && firstValue != undefined){
           display.textContent = calculate(firstValue, operator, secondValue)
@@ -88,6 +93,7 @@ keys.addEventListener("click", (e) => {
         if(display.textContent != "NaN"){
           calculator.dataset.firstValue = display.textContent // cidomo
         }
+      calculator.dataset.previousKeyType = 'calculate'
      
     } 
 
