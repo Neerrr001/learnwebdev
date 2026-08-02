@@ -6,19 +6,12 @@ const calculate = (n1, operator, n2) => {
       let res = 0
       let newn1 = parseFloat(n1)
       let newn2 = parseFloat(n2)
-      if(operator === 'add'){
-        res = newn1 + newn2; 
 
-      }else if(operator === 'subtract'){
-        res = newn1 - newn2; 
-
-      }else if(operator === 'multiply'){
-        res = newn1 * newn2; 
-
-      }else{ //divide
-        res = newn1 / newn2;
-      }
-      console.log(res)
+      if(operator === 'add') res = newn1 + newn2; 
+      if(operator === 'subtract') res = newn1 - newn2; 
+      if(operator === 'multiply') res = newn1 * newn2; 
+      if(operator === 'divide') res = newn1 / newn2;
+      
       return Number(res.toFixed(8)); 
     }
 
