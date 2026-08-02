@@ -76,7 +76,7 @@ keys.addEventListener("click", (e) => {
 
       //add a custom attribute
       calculator.dataset.previousKeyType = 'operator'
-      calculator.dataset.firstValue = displayedNum
+      calculator.dataset.firstValue = display.textContent
       calculator.dataset.operator = action ; 
     }
     
@@ -92,8 +92,8 @@ keys.addEventListener("click", (e) => {
         if(firstValue != "0" && firstValue != undefined){
           display.textContent = calculate(firstValue, operator, secondValue)
         }
-        if(displayedNum != "NaN"){
-          calculator.dataset.firstValue = displayedNum // cidomo
+        if(display.textContent != "NaN"){
+          calculator.dataset.firstValue = display.textContent // cidomo
         }
      
     } 
