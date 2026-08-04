@@ -2,8 +2,14 @@ import { useState } from 'react'
 import './App.css'
 function App() {
 
+  type Todo = {
+    id:number, 
+    text:string, 
+    completed:boolean
+  }
+
   const [input, setInput] = useState<string>("")
-  const [todos, setTodos] = useState<string[]>([])
+  const [todos, setTodos] = useState<Todo[]>([])
 
   
   return (
@@ -20,7 +26,11 @@ function App() {
         disabled = {input.trim() === ""}
         onClick={()=>{
           if(input.trim() === "")return; 
-          setTodos([...todos, input]);
+          setTodos([...todos, {
+            id:Date.now(),
+            text:input,
+            completed:false
+          }]);
           setInput("")
           console.log(todos)
         }
@@ -30,13 +40,23 @@ function App() {
         <ul>
           {todos.map((todo,idx) =>(
             <li key={idx}>
-              {todo}
+              {todo.text}
               <button
                type="reset"
                onClick={()=>{
-                setTodos(todos.filter((_,i)=> i !== idx))
+                setTodos(
+                  todos.map((t,i)=>{
+                    if(i == idx){
+                      return{
+                        ...t, 
+                        completed:!t.completed,
+                      }
+                    }
+                    return t; 
+                  })
+                )
                }}
-              >Delete</button>
+              >{todo.completed?"Completed":"Pending"}</button>
               </li> 
           ))}
         </ul>
