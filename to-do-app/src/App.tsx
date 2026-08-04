@@ -29,7 +29,15 @@ function App() {
         </button>
         <ul>
           {todos.map((todo,idx) =>(
-            <li key={idx}>{todo}</li>
+            <li key={idx}>
+              {todo}
+              <button
+               type="reset"
+               onClick={()=>{
+                setTodos(todos.filter((_,i)=> i !== idx))
+               }}
+              >Delete</button>
+              </li> 
           ))}
         </ul>
     </div>
