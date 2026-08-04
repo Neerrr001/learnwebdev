@@ -113,11 +113,5 @@ keys.addEventListener("click", (e) => {
       const clearButton = calculator.querySelector('[data-action=clear]')
       clearButton.textContent = 'CE'
     }
-
   }
-  
 });
-
-
-
-//there is bug. when i press 1 + 2 = 3, then if i keep pressing = then it just keeps adding whatever is present on the display.textContent. Need to fix that as well. 
