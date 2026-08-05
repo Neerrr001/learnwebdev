@@ -23,10 +23,11 @@ function App() {
   const [input, setInput] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>([])
   
-  const themeBody = screen === "light" ? " bg-white text-black min-h-screen" : "bg-gray-900 text-white min-h-screen"
+  const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
+  const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   
   return (
-    <div className={themeBody}>
+    <div className={`flex flex-col justify-center items-center min-h-screen ${themeBody}`}>
       <DarkMode toggle={toggle} screen={screen}/>
       <h2 className='text-4xl'>My todos</h2>
       <input
@@ -37,6 +38,7 @@ function App() {
     
       <button 
         type="submit"
+        className={`px-3 m-2 py-1 active:scale-95 rounded cursor-pointer ${themeButton}`}
         disabled = {input.trim() === ""}
         onClick={()=>{
           if(input.trim() === "")return; 
