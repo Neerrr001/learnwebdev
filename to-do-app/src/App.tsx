@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import DarkMode from './components/DarkMode.tsx'
 function App() {
 
   type Todo = {
@@ -7,14 +8,25 @@ function App() {
     text:string, 
     completed:boolean
   }
-
+  
+  function toggle(){
+    if(screen === "light"){
+      setScreen("dark")
+    }else{
+      setScreen("light")
+    }
+  }
+  
+  
+  const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>([])
 
   
   return (
     <div>
-      <h2>My todos</h2>
+      <DarkMode toggle={toggle} screen={screen}/>
+      <h2 className='text-4xl'>My todos</h2>
       <input
        type="text"
        placeholder="enter"
