@@ -16,8 +16,6 @@ function App() {
       setScreen("light")
     }
   }
-
-  
   
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
@@ -27,32 +25,36 @@ function App() {
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   
   return (
-    <div className={`flex flex-col justify-center items-center min-h-screen ${themeBody}`}>
+    <div className={`gap-10 flex flex-col justify-center items-center min-h-screen ${themeBody}`}>
       <DarkMode toggle={toggle} screen={screen}/>
       <h2 className='text-4xl'>My todos</h2>
-      <input
-       type="text"
-       placeholder="enter"
-       value= {input}
-       onChange={(e) => setInput(e.target.value)} />
-    
-      <button 
-        type="submit"
-        className={`px-3 m-2 py-1 active:scale-95 rounded cursor-pointer ${themeButton}`}
-        disabled = {input.trim() === ""}
-        onClick={()=>{
-          if(input.trim() === "")return; 
-          setTodos([...todos, {
-            id:Date.now(),
-            text:input,
-            completed:false
-          }]);
-          setInput("")
-          console.log(todos)
-        }
+      <div className='flex gap-3'>
+        <input
+        type="text"
+        className='px-3 py-2 m-2 w-3xl focus:outline-none
+                   focus:ring-1 border rounded-lg'
+        placeholder="enter"
+        value= {input}
+        onChange={(e) => setInput(e.target.value)} />
+      
+        <button 
+          type="submit"
+          className={`px-3 m-2 py-1 active:scale-95 rounded cursor-pointer ${themeButton}`}
+          disabled = {input.trim() === ""}
+          onClick={()=>{
+            if(input.trim() === "")return; 
+            setTodos([...todos, {
+              id:Date.now(),
+              text:input,
+              completed:false
+            }]);
+            setInput("")
+            console.log(todos)
+          }
         }>
-          Submit
-        </button>
+            Submit
+          </button>
+      </div>
         <ul>
           {todos.map((todo,idx) =>(
             <li key={idx}>
@@ -60,11 +62,11 @@ function App() {
               <button
                type="reset"
                onClick={()=>{
-                setTodos(
-                  todos.map((t,i)=>{
-                    if(i == idx){
-                      return{
-                        ...t, 
+                 setTodos(
+                   todos.map((t,i)=>{
+                     if(i == idx){
+                       return{
+                         ...t, 
                         completed:!t.completed,
                       }
                     }
