@@ -16,15 +16,17 @@ function App() {
       setScreen("light")
     }
   }
+
   
   
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>([])
-
+  
+  const themeBody = screen === "light" ? " bg-white text-black min-h-screen" : "bg-gray-900 text-white min-h-screen"
   
   return (
-    <div>
+    <div className={themeBody}>
       <DarkMode toggle={toggle} screen={screen}/>
       <h2 className='text-4xl'>My todos</h2>
       <input
