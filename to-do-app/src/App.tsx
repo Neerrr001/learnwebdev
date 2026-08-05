@@ -25,13 +25,13 @@ function App() {
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   
   return (
-    <div className={`gap-10 flex flex-col justify-center items-center min-h-screen ${themeBody}`}>
+    <div className={` pt-5 gap-10 flex flex-col  items-center min-h-screen ${themeBody}`}>
       <DarkMode toggle={toggle} screen={screen}/>
-      <h2 className='text-4xl'>My todos</h2>
-      <div className='flex gap-3'>
+      <h2 className='text-4xl font-bold'>My todos</h2>
+      <div className='flex gap-4  justify-center items-center'>
         <input
         type="text"
-        className='px-3 py-2 m-2 w-3xl focus:outline-none
+        className='px-3 py-2 m-2 w-2xl focus:outline-none
                    focus:ring-1 border rounded-lg'
         placeholder="enter"
         value= {input}
