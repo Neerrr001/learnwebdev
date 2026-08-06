@@ -8,6 +8,9 @@ function App() {
     text:string, 
     completed:boolean
   }
+  const [screen, setScreen] = useState<"light" | "dark">("light")
+  const [input, setInput] = useState<string>("")
+  const [todos, setTodos] = useState<Todo[]>([])
   
   function toggle(){
     if(screen === "light"){
@@ -30,12 +33,21 @@ function App() {
     setTodos([...todos, {id:Date.now(),text:input,completed:false}]);
     setInput("")
     console.log(todos)
-
+  }
+  function handleCheckboxChange(id: number){
+    const newTodos = todos.map((t, i)=>{
+      if(id === t.id){
+        return {
+          ...t,
+          completed:!t.completed,
+        }
+      }else{
+        return t
+      }
+    })
+    setTodos(newTodos)
   }
 
-  const [screen, setScreen] = useState<"light" | "dark">("light")
-  const [input, setInput] = useState<string>("")
-  const [todos, setTodos] = useState<Todo[]>([])
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
@@ -68,23 +80,13 @@ function App() {
         <ul>
           {todos.map((todo,idx) =>(
             <li key={idx}>
-              {todo.text}
-              <button
-               type="reset"
-               onClick={()=>{
-                 setTodos(
-                   todos.map((t,i)=>{
-                     if(i == idx){
-                       return{
-                         ...t, 
-                        completed:!t.completed,
-                      }
-                    }
-                    return t; 
-                  })
-                )
-               }}
-              >{todo.completed?"Completed":"Pending"}</button>
+              <input
+              type="checkbox"
+              id="todo-checkbox"
+              checked={todo.completed}
+              onChange ={() => handleCheckboxChange(todo.id)}
+              />
+              <label htmlFor='todo-checkbox'>{todo.text}</label>
               </li> 
           ))}
         </ul>
