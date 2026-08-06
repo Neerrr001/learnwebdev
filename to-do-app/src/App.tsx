@@ -35,7 +35,7 @@ function App() {
     console.log(todos)
   }
   function handleCheckboxChange(id: number){
-    const newTodos = todos.map((t, i)=>{
+    const newTodos = todos.map((t)=>{
       if(id === t.id){
         return {
           ...t,
@@ -52,6 +52,12 @@ function App() {
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   const themePlaceholder = screen === "light"? "placeholder-gray-500": "placeholder-white"
+  const themeTodo = (completed: boolean) => {
+    if(completed === true){
+      return "line-through"
+    }
+    return; 
+  }
   
   return (
     <div className={` pt-5 gap-10 flex flex-col  items-center min-h-screen ${themeBody}`}>
@@ -82,11 +88,15 @@ function App() {
             <li key={idx}>
               <input
               type="checkbox"
-              id="todo-checkbox"
+              id={`todo-${todo.id}`}
               checked={todo.completed}
               onChange ={() => handleCheckboxChange(todo.id)}
               />
-              <label htmlFor='todo-checkbox'>{todo.text}</label>
+              <label 
+              htmlFor={`todo-${todo.id}`}
+              className={themeTodo(todo.completed)}
+              >{todo.text}
+              </label>
               </li> 
           ))}
         </ul>
