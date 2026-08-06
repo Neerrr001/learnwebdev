@@ -23,23 +23,24 @@ function App() {
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
+  const themePlaceholder = screen === "light"? "placeholder-gray-500": "placeholder-white"
   
   return (
     <div className={` pt-5 gap-10 flex flex-col  items-center min-h-screen ${themeBody}`}>
       <DarkMode toggle={toggle} screen={screen}/>
       <h2 className='text-4xl font-bold'>My todos</h2>
-      <div className='flex gap-4  justify-center items-center'>
+      <div className='flex gap-3  justify-center items-center'>
         <input
         type="text"
-        className='px-3 py-2 m-2 w-2xl focus:outline-none
-                   focus:ring-1 border rounded-lg'
+        className={`${themePlaceholder} px-3 py-2 m-2 w-2xl focus:outline-none
+                   focus:ring-1 border rounded-lg`}
         placeholder="enter"
         value= {input}
         onChange={(e) => setInput(e.target.value)} />
       
         <button 
           type="submit"
-          className={`px-3 m-2 py-1 active:scale-95 rounded cursor-pointer ${themeButton}`}
+          className={`px-3 py-2 m-2 active:scale-95 rounded-lg cursor-pointer ${themeButton}`}
           disabled = {input.trim() === ""}
           onClick={()=>{
             if(input.trim() === "")return; 
