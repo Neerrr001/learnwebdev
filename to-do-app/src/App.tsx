@@ -16,7 +16,23 @@ function App() {
       setScreen("light")
     }
   }
-  
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
+    if(e.key === "Enter"){
+      addTodo()
+    }else{
+      return
+    }
+  }
+
+  function addTodo(){
+    if(input.trim() === "")return; 
+    setTodos([...todos, {id:Date.now(),text:input,completed:false}]);
+    setInput("")
+    console.log(todos)
+
+  }
+
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>([])
@@ -36,23 +52,16 @@ function App() {
                    focus:ring-1 border rounded-lg`}
         placeholder="enter"
         value= {input}
-        onChange={(e) => setInput(e.target.value)} />
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        />
       
         <button 
           type="submit"
           className={`px-3 py-2 m-2 active:scale-95 rounded-lg cursor-pointer ${themeButton}`}
           disabled = {input.trim() === ""}
-          onClick={()=>{
-            if(input.trim() === "")return; 
-            setTodos([...todos, {
-              id:Date.now(),
-              text:input,
-              completed:false
-            }]);
-            setInput("")
-            console.log(todos)
-          }
-        }>
+          onClick={addTodo}
+        >
             Submit
           </button>
       </div>
