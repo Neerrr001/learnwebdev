@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import DarkMode from './components/DarkMode.tsx'
 function App() {
@@ -10,7 +10,14 @@ function App() {
   }
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
-  const [todos, setTodos] = useState<Todo[]>([])
+  const [todos, setTodos] = useState<Todo[]>(() =>{
+    const storeTodos = localStorage.getItem("todos");
+    if(storeTodos !== null){
+      const parseTodos = JSON.parse(storeTodos);
+      return parseTodos
+    }
+    return [];
+  })
   
   function toggle(){
     if(screen === "light"){
@@ -32,7 +39,6 @@ function App() {
     if(input.trim() === "")return; 
     setTodos([...todos, {id:Date.now(),text:input,completed:false}]);
     setInput("")
-    console.log(todos)
   }
   function handleCheckboxChange(id: number){
     const newTodos = todos.map((t)=>{
@@ -47,6 +53,10 @@ function App() {
     })
     setTodos(newTodos)
   }
+  
+  useEffect(()=>{
+    localStorage.setItem("todos", JSON.stringify(todos))
+  },[todos])
 
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
@@ -75,7 +85,7 @@ function App() {
         type="text"
         className={`${themePlaceholder} px-3 py-2 m-2 w-2xl focus:outline-none
                    focus:ring-1 border rounded-lg`}
-        placeholder="enter"
+        placeholder="add a task"
         value= {input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
