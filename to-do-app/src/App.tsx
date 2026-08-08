@@ -52,9 +52,16 @@ function App() {
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   const themePlaceholder = screen === "light"? "placeholder-gray-500": "placeholder-white"
-  const themeTodo = (completed: boolean) => {
+
+  const themeTodo = (screen:string, completed: boolean) => {
     if(completed === true){
-      return "line-through"
+      if(screen === "light"){
+        return "line-through decoration-gray-600 text-gray-500"
+      }
+      else{
+        //screen === "dark"
+        return "line-through decoration-gray-600 text-gray-300"
+      }
     }
     return; 
   }
@@ -83,23 +90,27 @@ function App() {
             Submit
           </button>
       </div>
-        <ul>
+      <div className='max-w-2xl '>
+        <ul className=''>
           {todos.map((todo,idx) =>(
-            <li key={idx}>
+            <li className='flex mb-1 items-baseline gap-2 w-full' key={idx}>
               <input
               type="checkbox"
+              className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
               id={`todo-${todo.id}`}
               checked={todo.completed}
               onChange ={() => handleCheckboxChange(todo.id)}
               />
               <label 
               htmlFor={`todo-${todo.id}`}
-              className={themeTodo(todo.completed)}
+              className={`leading-snug ${themeTodo(screen,todo.completed)}`}
               >{todo.text}
               </label>
               </li> 
           ))}
         </ul>
+      </div>
+        
     </div>
   )
 }
