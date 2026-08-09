@@ -11,7 +11,7 @@ function Filter({filter, setFilter, screen}: FilterProps) {
   return (
     <div className="relative ">  
         <select name="" id=""
-        className={`${themeFilter} rounded-lg cursor-pointer`}
+        className={`${themeFilter} mt-1 rounded-lg cursor-pointer`}
         value={filter}
         onChange={(e) =>{
           const value = e.target.value as "all" | "active" | "completed"
