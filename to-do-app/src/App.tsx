@@ -77,7 +77,7 @@ function App() {
   },[todos])
 
   
-  const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-800 text-white "
+  const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   const themePlaceholder = screen === "light"? "placeholder-gray-500": "placeholder-white"
 
@@ -99,7 +99,7 @@ function App() {
       <div>
         <div className="w-full mt-2 px-6 flex  gap-3 justify-end">
           <DarkMode toggle={toggle} screen={screen}/>
-          <Filter filter ={filter} setFilter={setFilter}/>
+          <Filter filter ={filter} setFilter={setFilter} screen ={screen}/>
         </div>
       </div>
       <div className="flex flex-col gap-5 items-center justify-center">

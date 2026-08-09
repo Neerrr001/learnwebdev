@@ -1,13 +1,17 @@
 type FilterProps = {
   filter: "all" | "active" | "completed",
-  setFilter: React.Dispatch<React.SetStateAction<"all" | "active" | "completed">>
+  setFilter: React.Dispatch<React.SetStateAction<"all" | "active" | "completed">>,
+  screen: "light" | "dark"
 }
 
-function Filter({filter, setFilter}: FilterProps) {
+function Filter({filter, setFilter, screen}: FilterProps) {
+  
+  const themeFilter = screen === "light" ? "bg-white text-black border-gray-300" : "bg-gray-900 text-white border-gray-600"
+
   return (
     <div className="relative ">  
         <select name="" id=""
-        className=""
+        className={`${themeFilter} rounded-lg cursor-pointer`}
         value={filter}
         onChange={(e) =>{
           const value = e.target.value as "all" | "active" | "completed"
