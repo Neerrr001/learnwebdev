@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import DarkMode from './components/DarkMode.tsx'
+import ClearHistory from './components/ClearHistory.tsx'
 import Filter from './components/Filter.tsx'
+import type { Todo } from './types.ts'
 function App() {
 
-  type Todo = {
-    id:number, 
-    text:string, 
-    completed:boolean
-  }
+  
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>(() =>{
@@ -97,8 +95,9 @@ function App() {
   return (
     <div className={`flex flex-col gap-4 min-h-screen ${themeBody}`}>
       <div>
-        <div className="w-full mt-2 px-6 flex  gap-3 justify-end">
+        <div className="w-full mt-2 px-6 flex  gap-4 justify-end">
           <DarkMode toggle={toggle} screen={screen}/>
+          <ClearHistory setTodos={setTodos} />
           <Filter filter ={filter} setFilter={setFilter} screen ={screen}/>
         </div>
       </div>
