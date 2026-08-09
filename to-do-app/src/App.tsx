@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import DarkMode from './components/DarkMode.tsx'
+import Filter from './components/Filter.tsx'
 function App() {
 
   type Todo = {
@@ -96,6 +97,7 @@ function App() {
   return (
     <div className={` pt-5 gap-10 flex flex-col  items-center min-h-screen ${themeBody}`}>
       <DarkMode toggle={toggle} screen={screen}/>
+      <Filter filter ={filter} setFilter={setFilter}/>
       <h2 className='text-4xl font-bold'>My todos</h2>
       <div className='flex gap-3  justify-center items-center'>
         <input
@@ -119,7 +121,7 @@ function App() {
       </div>
       <div className='max-w-2xl '>
         <ul className=''>
-          {todos.map((todo,idx) =>(
+          {visibileTodos.map((todo,idx) =>(
             <li className='flex mb-1 items-baseline gap-2 w-full' key={idx}>
               <input
               type="checkbox"
