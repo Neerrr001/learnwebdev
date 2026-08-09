@@ -95,49 +95,55 @@ function App() {
   }
   
   return (
-    <div className={` pt-5 gap-10 flex flex-col  items-center min-h-screen ${themeBody}`}>
-      <DarkMode toggle={toggle} screen={screen}/>
-      <Filter filter ={filter} setFilter={setFilter}/>
-      <h2 className='text-4xl font-bold'>My todos</h2>
-      <div className='flex gap-3  justify-center items-center'>
-        <input
-        type="text"
-        className={`${themePlaceholder} px-3 py-2 m-2 w-2xl focus:outline-none
-                   focus:ring-1 border rounded-lg`}
-        placeholder="add a task"
-        value= {input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-        />
-      
-        <button 
-          type="submit"
-          className={`px-3 py-2 m-2 active:scale-95 rounded-lg cursor-pointer ${themeButton}`}
-          disabled = {input.trim() === ""}
-          onClick={addTodo}
-        >
-            Submit
-          </button>
+    <div className={`flex flex-col gap-4 min-h-screen ${themeBody}`}>
+      <div>
+        <div className="w-full mt-2 px-6 flex  gap-3 justify-end">
+          <DarkMode toggle={toggle} screen={screen}/>
+          <Filter filter ={filter} setFilter={setFilter}/>
+        </div>
       </div>
-      <div className='max-w-2xl '>
-        <ul className=''>
-          {visibileTodos.map((todo,idx) =>(
-            <li className='flex mb-1 items-baseline gap-2 w-full' key={idx}>
-              <input
-              type="checkbox"
-              className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
-              id={`todo-${todo.id}`}
-              checked={todo.completed}
-              onChange ={() => handleCheckboxChange(todo.id)}
-              />
-              <label 
-              htmlFor={`todo-${todo.id}`}
-              className={`leading-snug ${themeTodo(screen,todo.completed)}`}
-              >{todo.text}
-              </label>
-              </li> 
-          ))}
-        </ul>
+      <div className="flex flex-col gap-5 items-center justify-center">
+        <h2 className='text-4xl font-bold'>My todos</h2>
+        <div className='flex gap-3  justify-center items-center'>
+          <input
+          type="text"
+          className={`${themePlaceholder} px-3 py-2 m-2 w-2xl focus:outline-none
+                    focus:ring-1 border rounded-lg`}
+          placeholder="add a task"
+          value= {input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          />
+        
+          <button 
+            type="submit"
+            className={`px-3 py-2 m-2 active:scale-95 rounded-lg cursor-pointer ${themeButton}`}
+            disabled = {input.trim() === ""}
+            onClick={addTodo}
+          >
+              Submit
+            </button>
+        </div>
+        <div className='max-w-2xl '>
+          <ul className=''>
+            {visibileTodos.map((todo,idx) =>(
+              <li className='flex mb-1 items-baseline gap-2 w-full' key={idx}>
+                <input
+                type="checkbox"
+                className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
+                id={`todo-${todo.id}`}
+                checked={todo.completed}
+                onChange ={() => handleCheckboxChange(todo.id)}
+                />
+                <label 
+                htmlFor={`todo-${todo.id}`}
+                className={`leading-snug ${themeTodo(screen,todo.completed)}`}
+                >{todo.text}
+                </label>
+                </li> 
+            ))}
+          </ul>
+        </div>
       </div>
         
     </div>

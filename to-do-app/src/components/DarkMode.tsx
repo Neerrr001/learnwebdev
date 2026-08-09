@@ -18,7 +18,7 @@ function darkMode({toggle, screen} : DarkModeProps) {
   return (
     <div className='relative max-h-0.5'>
         <button 
-        className='fixed bg-white active:scale-95   px-2 py-2 top-4 right-4 border hover:bg-gray-100 cursor-pointer rounded-lg'
+        className=' bg-white active:scale-95   px-2 py-2  border hover:bg-gray-100 cursor-pointer rounded-lg'
         onClick={toggle}>
           <img className='w-4 h-4' src= {icon} alt="" />
         </button>
@@ -28,3 +28,7 @@ function darkMode({toggle, screen} : DarkModeProps) {
 }
 
 export default darkMode
+
+
+
+// className='fixed bg-white active:scale-95   px-2 py-2 top-4 right-4 border hover:bg-gray-100 cursor-pointer rounded-lg'
