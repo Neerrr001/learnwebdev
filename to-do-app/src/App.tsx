@@ -11,6 +11,7 @@ function App() {
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>(() =>{
+    //initial state of todos
     const storeTodos = localStorage.getItem("todos");
     if(storeTodos !== null){
       const parseTodos = JSON.parse(storeTodos);
@@ -18,6 +19,22 @@ function App() {
     }
     return [];
   })
+  const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
+
+  //inside filter(), the callback is supposed to return a boolean 
+  const visibileTodos = todos.filter(todo => {
+    if(filter === "all"){
+      return true
+
+    }else if(filter === "active"){
+      return (todo.completed === false);
+
+    }else{
+      // filter = completed
+      return todo.completed === true
+    }
+  })
+  console.log("visible todos ",visibileTodos)
   
   function toggle(){
     if(screen === "light"){
@@ -59,7 +76,7 @@ function App() {
   },[todos])
 
   
-  const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
+  const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-800 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   const themePlaceholder = screen === "light"? "placeholder-gray-500": "placeholder-white"
 
