@@ -20,6 +20,7 @@ function App() {
     return [];
   })
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
+  const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
 
   //inside filter(), the callback is supposed to return a boolean 
   const visibileTodos = todos.filter(todo => {
@@ -34,7 +35,6 @@ function App() {
       return todo.completed === true
     }
   })
-  console.log("visible todos ",visibileTodos)
   
   function toggle(){
     if(screen === "light"){
@@ -127,7 +127,7 @@ function App() {
         <div className='max-w-2xl '>
           <ul className=''>
             {visibileTodos.map((todo,idx) =>(
-              <li className='flex justify-start items-center mb-1  gap-2 w-full' key={idx}>
+              <li className='flex justify-start items-center gap-2 w-full' key={idx}>
                 <input
                 type="checkbox"
                 className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
@@ -140,7 +140,7 @@ function App() {
                 className={`leading-snug ${themeTodo(screen,todo.completed)}`}
                 >{todo.text}
                 </label>
-                <EditBtn />
+                <EditBtn todo={todo} setEditingTodo={setEditingTodo}/>
               </li> 
             ))}
           </ul>
