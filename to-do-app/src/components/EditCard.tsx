@@ -11,7 +11,7 @@ type EditCardProps = {
 
 function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps) {
     
-    const [InputText, setInputText] = useState(
+    const [inputText, setInputText] = useState(
         editingTodo?.text ?? ""
     )
 
@@ -19,6 +19,20 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
         setInputText(e.target.value)
     }
 
+    function saveChanges(){
+        const updatedTodos = todos.map((todo)=>{
+            if(todo.id === editingTodo?.id){
+                return {
+                    ...todo, 
+                    text:inputText
+                }
+            }
+            return todo; 
+        })
+        setTodos(updatedTodos)
+        setEditingTodo(null)
+
+    }
 
   return (
     <div className="fixed flex justify-center items-center inset-0 bg-black/40">
@@ -29,12 +43,22 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
             <div>
                 {editingTodo &&
                 <input type="text"
-                value={InputText}
+                value={inputText}
                 onChange={handleTodoChange} />}
             </div>
             <div>
-                <button>Cancel</button>
-                <button>Save</button>
+                <button
+                className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
+                onClick={()=>{
+                    setEditingTodo(null);
+                }}>
+                Cancel
+                </button>
+                <button
+                className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
+                onClick={saveChanges}>
+                Save
+                </button>
             </div>
 
         </div>
