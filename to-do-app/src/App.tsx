@@ -5,6 +5,7 @@ import ClearHistory from './components/ClearHistory.tsx'
 import Filter from './components/Filter.tsx'
 import EditBtn from './components/EditBtn.tsx'
 import type { Todo } from './types.ts'
+import EditCard from './components/EditCard.tsx'
 function App() {
 
   
@@ -144,6 +145,10 @@ function App() {
               </li> 
             ))}
           </ul>
+        </div>
+        <div>
+          {editingTodo &&
+          <EditCard todos={todos} setTodos={setTodos} editingTodo={editingTodo} setEditingTodo={setEditingTodo} />}
         </div>
       </div>
         
