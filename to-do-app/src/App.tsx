@@ -3,6 +3,7 @@ import './App.css'
 import DarkMode from './components/DarkMode.tsx'
 import ClearHistory from './components/ClearHistory.tsx'
 import Filter from './components/Filter.tsx'
+import EditBtn from './components/EditBtn.tsx'
 import type { Todo } from './types.ts'
 function App() {
 
@@ -126,7 +127,7 @@ function App() {
         <div className='max-w-2xl '>
           <ul className=''>
             {visibileTodos.map((todo,idx) =>(
-              <li className='flex mb-1 items-baseline gap-2 w-full' key={idx}>
+              <li className='flex justify-start items-center mb-1  gap-2 w-full' key={idx}>
                 <input
                 type="checkbox"
                 className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
@@ -139,7 +140,8 @@ function App() {
                 className={`leading-snug ${themeTodo(screen,todo.completed)}`}
                 >{todo.text}
                 </label>
-                </li> 
+                <EditBtn />
+              </li> 
             ))}
           </ul>
         </div>
