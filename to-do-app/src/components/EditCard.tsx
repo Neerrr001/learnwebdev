@@ -31,7 +31,13 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
         })
         setTodos(updatedTodos)
         setEditingTodo(null)
+    }
 
+    function deleteTodo(){
+        const updatedTodos = todos.filter(todo => todo.id !== editingTodo?.id)
+
+        setTodos(updatedTodos)
+        setEditingTodo(null)
     }
 
   return (
@@ -49,6 +55,11 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
             <div>
                 <button
                 className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
+                onClick={saveChanges}>
+                Save
+                </button>
+                <button
+                className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
                 onClick={()=>{
                     setEditingTodo(null);
                 }}>
@@ -56,8 +67,8 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
                 </button>
                 <button
                 className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
-                onClick={saveChanges}>
-                Save
+                onClick={deleteTodo}>
+                    Delete
                 </button>
             </div>
 
