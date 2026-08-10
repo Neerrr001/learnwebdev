@@ -9,7 +9,10 @@ type EditCardProps = {
 
 function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps) {
   return (
-    <div>
+    <div className="fixed flex justify-center items-center inset-0 bg-black/40">
+        <div className="w-96 p-6 rounded-xl shadow-xl bg-white ">
+            
+        </div>
       
     </div>
   )
