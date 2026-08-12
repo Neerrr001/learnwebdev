@@ -1,5 +1,5 @@
 import type {Todo} from "../types.ts"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 type EditCardProps = {
     todos: Todo[],
@@ -14,6 +14,20 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
     const [inputText, setInputText] = useState(
         editingTodo?.text ?? ""
     )
+
+    useEffect(() => {
+      function handleKeyDown(e:KeyboardEvent){
+        if(e.key === "Escape"){
+            setEditingTodo(null);
+        }
+    }
+      document.addEventListener("keydown", handleKeyDown);
+    
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    }, [])
+    
 
     function handleTodoChange(e: React.ChangeEvent<HTMLInputElement>){
         setInputText(e.target.value)
@@ -39,6 +53,13 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
         setTodos(updatedTodos)
         setEditingTodo(null)
     }
+    
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
+        if(e.key === "Enter"){
+            saveChanges();
+        }
+    }
+
 
   return (
     <div className="fixed flex justify-center items-center inset-0 bg-black/40">
@@ -47,7 +68,7 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
             <div>
                 {editingTodo &&
                 <input type="text"
-                className="absolute text-2xl font-semibold"
+                className="w-full p-2 text-xl font-semibold"
                 value={inputText}
                 onChange={handleTodoChange} 
                 onKeyDown={handleKeyDown}/>}
