@@ -42,31 +42,31 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
 
   return (
     <div className="fixed flex justify-center items-center inset-0 bg-black/40">
-        <div className="w-86 min-h-76 p-6 rounded-xl shadow-xl bg-white ">
-            <div>
-                <h3>Edit Todo</h3>
-            </div>
+        <div className="flex flex-col justify-between w-86 min-h-76 p-6 rounded-xl shadow-xl bg-white">
+            
             <div>
                 {editingTodo &&
                 <input type="text"
+                className="absolute text-2xl font-semibold"
                 value={inputText}
-                onChange={handleTodoChange} />}
+                onChange={handleTodoChange} 
+                onKeyDown={handleKeyDown}/>}
             </div>
-            <div>
+            <div className="flex justify-center items-center gap-3j">
                 <button
-                className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
+                className="px-3 py-2 m-2 hover:ring bg-blue-400 active:scale-95 rounded-lg cursor-pointer font-semibold"
                 onClick={saveChanges}>
-                Save
+                Save...
                 </button>
                 <button
-                className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
+                className="px-3 py-2 m-2 hover:ring bg-gray-200 active:scale-95 rounded-lg cursor-pointer font-semibold "
                 onClick={()=>{
                     setEditingTodo(null);
                 }}>
                 Cancel
                 </button>
                 <button
-                className="px-3 py-2 m-2 bg-gray-200 active:scale-95 rounded-lg cursor-pointer"
+                className="px-3 py-2 m-2 hover:ring bg-red-400 active:scale-95 rounded-lg cursor-pointer font-semibold "
                 onClick={deleteTodo}>
                     Delete
                 </button>
