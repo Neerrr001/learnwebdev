@@ -6,12 +6,13 @@ import Filter from './components/Filter.tsx'
 import EditBtn from './components/EditBtn.tsx'
 import type { Todo } from './types.ts'
 import EditCard from './components/EditCard.tsx'
-import AddTodo from './components/AddTodo.tsx'
+import InputTodo from './components/InputTodo.tsx'
 function App() {
 
   
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
+  const [title, setTitle] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>(() =>{
     //initial state of todos
     const storeTodos = localStorage.getItem("todos");
@@ -46,7 +47,7 @@ function App() {
     }
   }
 
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>){
     if(e.key === "Enter" && (e.ctrlKey || e.metaKey)){
       addTodo()
     }else{
@@ -56,7 +57,8 @@ function App() {
 
   function addTodo(){
     if(input.trim() === "")return; 
-    setTodos([...todos, {id:Date.now(),text:input,completed:false}]);
+    setTodos([...todos, {id:Date.now(),title:title,text:input,completed:false}]);
+    setTitle("")
     setInput("")
   }
   function handleCheckboxChange(id: number){
@@ -107,8 +109,9 @@ function App() {
       <div className="flex flex-col gap-5 items-center justify-center">
         <h2 className='text-4xl font-bold'>My todos</h2>
         <div className='flex gap-3  justify-center items-center'>
-          <AddTodo input={input} setInput={setInput} handleKeyDown={handleKeyDown}
-          themePlaceHolder={themePlaceHolder}/>
+          <InputTodo input={input} setInput={setInput} handleKeyDown={handleKeyDown}
+          themePlaceHolder={themePlaceHolder}
+          title={title} setTitle={setTitle} />
         
           <button 
             type="submit"
@@ -133,7 +136,7 @@ function App() {
                 <label 
                 htmlFor={`todo-${todo.id}`}
                 className={`leading-snug ${themeTodo(screen,todo.completed)}`}
-                >{todo.text}
+                >{todo.title}
                 </label>
                 <EditBtn todo={todo} setEditingTodo={setEditingTodo}/>
               </li> 
@@ -142,7 +145,7 @@ function App() {
         </div>
         <div>
           {editingTodo &&
-          <EditCard todos={todos} setTodos={setTodos} editingTodo={editingTodo} setEditingTodo={setEditingTodo} />}
+          <EditCard todos={todos} setTodos={setTodos} editingTodo={editingTodo} setEditingTodo={setEditingTodo} title={title}/>}
         </div>
       </div>
         
