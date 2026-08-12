@@ -55,7 +55,7 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
     }
     
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
-        if(e.key === "Enter"){
+        if(e.key === "Enter" && (e.ctrlKey || e.metaKey)){
             saveChanges();
         }
     }

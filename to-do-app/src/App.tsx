@@ -47,7 +47,7 @@ function App() {
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
-    if(e.key === "Enter"){
+    if(e.key === "Enter" && (e.ctrlKey || e.metaKey)){
       addTodo()
     }else{
       return
