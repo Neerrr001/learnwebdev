@@ -5,11 +5,12 @@ type EditCardProps = {
     todos: Todo[],
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>,
     editingTodo: Todo | null,
-    setEditingTodo:React.Dispatch<React.SetStateAction<Todo | null>>
+    setEditingTodo:React.Dispatch<React.SetStateAction<Todo | null>>,
+    title: string
 }
 
 
-function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps) {
+function EditCard({todos, setTodos, editingTodo, setEditingTodo,title}: EditCardProps) {
     
     const [inputText, setInputText] = useState(
         editingTodo?.text ?? ""
@@ -72,12 +73,21 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
         }}>
             
             <div>
-                {editingTodo &&
-                <input type="text"
-                className="w-full p-2 text-xl font-semibold"
-                value={inputText}
-                onChange={handleTodoChange} 
-                onKeyDown={handleKeyDown}/>}
+                {editingTodo &&(
+                    <div>
+                        <h2
+                        className="w-full p-2 text-xl font-semibold">
+                            {editingTodo.title}
+                        </h2>
+
+                        <input type="text"
+                        className="w-full mt-3 p-2 "
+                        value={inputText}
+                        onChange={handleTodoChange} 
+                        onKeyDown={handleKeyDown}/>
+                    
+                    </div>
+                )}
             </div>
             <div className="flex justify-center items-center gap-3j">
                 <button
