@@ -6,6 +6,7 @@ import Filter from './components/Filter.tsx'
 import EditBtn from './components/EditBtn.tsx'
 import type { Todo } from './types.ts'
 import EditCard from './components/EditCard.tsx'
+import AddTodo from './components/AddTodo.tsx'
 function App() {
 
   
@@ -79,7 +80,7 @@ function App() {
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
-  const themePlaceholder = screen === "light"? "placeholder-gray-500": "placeholder-white"
+  const themePlaceHolder = screen === "light"? "placeholder-gray-500": "placeholder-white"
 
   const themeTodo = (screen:string, completed: boolean) => {
     if(completed === true){
@@ -106,15 +107,8 @@ function App() {
       <div className="flex flex-col gap-5 items-center justify-center">
         <h2 className='text-4xl font-bold'>My todos</h2>
         <div className='flex gap-3  justify-center items-center'>
-          <input
-          type="text"
-          className={`${themePlaceholder} px-3 py-2 m-2 w-2xl focus:outline-none
-                    focus:ring-1 border rounded-lg`}
-          placeholder="add a task"
-          value= {input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          />
+          <AddTodo input={input} setInput={setInput} handleKeyDown={handleKeyDown}
+          themePlaceHolder={themePlaceHolder}/>
         
           <button 
             type="submit"
