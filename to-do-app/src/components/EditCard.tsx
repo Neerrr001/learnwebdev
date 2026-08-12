@@ -81,7 +81,7 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo,title}: EditCard
                         </h2>
 
                         <input type="text"
-                        className="w-full mt-3 p-2 "
+                        className="w-full mt-3 p-2 border-none outline-none "
                         value={inputText}
                         onChange={handleTodoChange} 
                         onKeyDown={handleKeyDown}/>

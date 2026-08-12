@@ -12,18 +12,17 @@ function AddTodo({input, setInput, handleKeyDown, themePlaceHolder, title, setTi
 
     
   return (
-    <div className="flex p-2 flex-col gap-2">
+    <div className="flex p-2 flex-col gap-2 border rounded-lg focus-within:ring-1 ">
 
         <input type="text" 
-        className="px-3 py-2 m-2 font-semibold"
+        className="px-3 py-2 m-2 font-semibold w-full border-none outline-none focus:outline-none"
         placeholder="Title"
         value={title}
         onChange={(e)=> setTitle(e.target.value)}
         />
 
         <textarea
-          className={`${themePlaceHolder} px-3 py-2 m-2 w-2xl focus:outline-none
-                    focus:ring-1 border rounded-lg`}
+          className={`${themePlaceHolder} px-3 py-2 m-2 w-2xl border-none outline-none focus:outline-none`}
           placeholder="Details"
           value= {input}
           onChange={(e) => setInput(e.target.value)}
