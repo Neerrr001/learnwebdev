@@ -62,8 +62,14 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo}: EditCardProps)
 
 
   return (
-    <div className="fixed flex justify-center items-center inset-0 bg-black/40">
-        <div className="flex flex-col justify-between w-86 min-h-76 p-6 rounded-xl shadow-xl bg-white">
+    <div className="fixed flex justify-center items-center inset-0 bg-black/40"
+    onClick={()=>{
+        setEditingTodo(null)
+    }}>
+        <div className="flex flex-col justify-between w-86 min-h-76 p-6 rounded-xl shadow-xl bg-white"
+        onClick={(e)=>{
+            e.stopPropagation()
+        }}>
             
             <div>
                 {editingTodo &&
