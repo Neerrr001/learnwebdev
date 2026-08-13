@@ -27,6 +27,8 @@ function App() {
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
 
+  const todoRefs = useRef<Record<number ,HTMLDivElement | null>>({})
+
   //inside filter(), the callback is supposed to return a boolean 
   const visibileTodos = todos.filter(todo => {
     if(filter === "all"){
@@ -88,6 +90,11 @@ function App() {
       }
     })
     setTodos(newTodos)
+  }
+  
+  function onResultClick(todo:Todo){
+
+
   }
   
   useEffect(()=>{
