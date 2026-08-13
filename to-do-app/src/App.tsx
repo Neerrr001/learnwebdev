@@ -13,7 +13,7 @@ function App() {
   
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
-  const [searchText, setSearchText] = useState<string>("")
+  const [search, setSearch] = useState<string>("")
   const [title, setTitle] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>(() =>{
     //initial state of todos
@@ -94,6 +94,14 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos))
   },[todos])
 
+  const results = todos.filter((todo)=>{
+    if(todo.title.startsWith(search)){
+      return true; 
+    }else{
+      return false; 
+    }
+  })
+
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
@@ -117,7 +125,7 @@ function App() {
       
         <div className="flex justify-center w-full gap-4 items-center h-16">
           <div className=''>
-            <SearchBar searchText={searchText} setSearchText={setSearchText}/>
+            <SearchBar search={search} setSearch={setSearch} results={results}/>
           </div>
           <div className='flex gap-4'>
             <DarkMode toggle={toggle} screen={screen}/>
