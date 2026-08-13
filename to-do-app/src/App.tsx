@@ -94,13 +94,9 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos))
   },[todos])
 
-  const results = todos.filter((todo)=>{
-    if(todo.title.startsWith(search)){
-      return true; 
-    }else{
-      return false; 
-    }
-  })
+  const results = todos.filter((todo)=>
+    todo.title.toLowerCase().startsWith(search.toLowerCase())
+  )
 
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
