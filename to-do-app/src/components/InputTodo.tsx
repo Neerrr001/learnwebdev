@@ -2,13 +2,14 @@
 type inputTodoProps = {
     input: string, 
     setInput:React.Dispatch<React.SetStateAction<string>>,
-    handleKeyDown:(e: React.KeyboardEvent<HTMLTextAreaElement>)=> void,
+    handleKeyDown:(e: React.KeyboardEvent<HTMLTextAreaElement>)=>void,
     themePlaceHolder: string,
     title: string, 
-    setTitle: React.Dispatch<React.SetStateAction<string>>
+    setTitle: React.Dispatch<React.SetStateAction<string>>,
+    handleTitleDown:(e: React.KeyboardEvent<HTMLInputElement>) => void; 
 }
 
-function AddTodo({input, setInput, handleKeyDown, themePlaceHolder, title, setTitle}: inputTodoProps) {
+function InputTodo({input, setInput, handleKeyDown, themePlaceHolder, title, setTitle, handleTitleDown}: inputTodoProps) {
 
     
   return (
@@ -19,6 +20,7 @@ function AddTodo({input, setInput, handleKeyDown, themePlaceHolder, title, setTi
         placeholder="Title"
         value={title}
         onChange={(e)=> setTitle(e.target.value)}
+        onKeyDown={handleTitleDown}
         />
 
         <textarea
@@ -33,4 +35,4 @@ function AddTodo({input, setInput, handleKeyDown, themePlaceHolder, title, setTi
   )
 }
 
-export default AddTodo
+export default InputTodo

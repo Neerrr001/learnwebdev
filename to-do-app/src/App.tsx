@@ -55,9 +55,22 @@ function App() {
     }
   }
 
+  function handleTitleDown(e:React.KeyboardEvent<HTMLInputElement>){
+    if(e.key === "Enter" && (e.ctrlKey || e.metaKey)){
+      addTodo()
+    }else{
+      return ;
+    }
+  }
+
   function addTodo(){
-    if(input.trim() === "")return; 
-    setTodos([...todos, {id:Date.now(),title:title,text:input,completed:false}]);
+    if(input.trim() === "" && title.trim() === "")return; 
+    setTodos([...todos, {
+      id:Date.now(),
+      title:title,
+      text:input,
+      completed:false
+    }]);
     setTitle("")
     setInput("")
   }
@@ -111,7 +124,7 @@ function App() {
         <div className='flex gap-3  justify-center items-center'>
           <InputTodo input={input} setInput={setInput} handleKeyDown={handleKeyDown}
           themePlaceHolder={themePlaceHolder}
-          title={title} setTitle={setTitle} />
+          title={title} setTitle={setTitle}  handleTitleDown={handleTitleDown}/>
         
           <button 
             type="submit"
