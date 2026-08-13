@@ -1,5 +1,11 @@
 import searchIcon from '../assets/search.png'
-function SearchBar() {
+
+type searchBarProps = {
+    searchText:string,
+    setSearchText: React.Dispatch<React.SetStateAction<string>>
+}
+
+function SearchBar({searchText, setSearchText}: searchBarProps) {
   return (
     <div className='flex items-center gap-2 '>
         <img src={searchIcon} className='h-4' alt="" />
