@@ -1,4 +1,3 @@
-
 type inputTodoProps = {
     input: string, 
     setInput:React.Dispatch<React.SetStateAction<string>>,

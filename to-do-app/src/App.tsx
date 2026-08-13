@@ -7,11 +7,13 @@ import EditBtn from './components/EditBtn.tsx'
 import type { Todo } from './types.ts'
 import EditCard from './components/EditCard.tsx'
 import InputTodo from './components/InputTodo.tsx'
+import SearchBar from './components/SearchBar.tsx'
 function App() {
 
   
   const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
+  const [searchText, setSearchText] = useState<string>("")
   const [title, setTitle] = useState<string>("")
   const [todos, setTodos] = useState<Todo[]>(() =>{
     //initial state of todos
@@ -112,14 +114,20 @@ function App() {
   
   return (
     <div className={`flex flex-col gap-4 min-h-screen ${themeBody}`}>
-      <div>
-        <div className="w-full mt-2 px-6 flex  gap-4 justify-end">
-          <DarkMode toggle={toggle} screen={screen}/>
-          <ClearHistory setTodos={setTodos} />
-          <Filter filter ={filter} setFilter={setFilter} screen ={screen}/>
+      
+        <div className="my-2 px-6 flex justify-center gap-6 items-start ">
+          <div className='w-1/2'>
+            <SearchBar/>
+          </div>
+          <div className='flex gap-4'>
+
+            <DarkMode toggle={toggle} screen={screen}/>
+            <ClearHistory setTodos={setTodos} />
+            <Filter filter ={filter} setFilter={setFilter} screen ={screen}/>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-5 items-center justify-center">
+      
+      <div className="flex flex-col gap-5 mt-10 items-center justify-center">
         <h2 className='text-4xl font-bold'>My todos</h2>
         <div className='flex gap-3  justify-center items-center'>
           <InputTodo input={input} setInput={setInput} handleKeyDown={handleKeyDown}
@@ -130,10 +138,9 @@ function App() {
             type="submit"
             className={`px-3 py-2 m-2 active:scale-95 rounded-lg cursor-pointer ${themeButton}`}
             disabled = {input.trim() === ""}
-            onClick={addTodo}
-          >
+            onClick={addTodo}>
               Submit
-            </button>
+          </button>
         </div>
         <div className='max-w-2xl '>
           <ul className=''>
