@@ -67,8 +67,8 @@ function App() {
     if(input.trim() === "" && title.trim() === "")return; 
     setTodos([...todos, {
       id:Date.now(),
-      title:title,
-      text:input,
+      title:title.trim() === ""? "No title":title,
+      text:input.trim()===""?"No description":input,
       completed:false
     }]);
     setTitle("")
@@ -149,7 +149,7 @@ function App() {
                 <label 
                 htmlFor={`todo-${todo.id}`}
                 className={`leading-snug ${themeTodo(screen,todo.completed)}`}
-                >{todo.title}
+                >{todo.title === "No title"? todo.text:todo.title}
                 </label>
                 <EditBtn todo={todo} setEditingTodo={setEditingTodo}/>
               </li> 
