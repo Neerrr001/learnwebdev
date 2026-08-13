@@ -115,12 +115,12 @@ function App() {
   return (
     <div className={`flex flex-col gap-4 min-h-screen ${themeBody}`}>
       
-        <div className="my-2 px-6 flex justify-center gap-6 items-start ">
+        <div className="flex justify-center gap-4 items-center h-16">
           <div className='w-1/2'>
             <SearchBar/>
           </div>
-          <div className='flex gap-4'>
 
+          <div className='flex gap-4'>
             <DarkMode toggle={toggle} screen={screen}/>
             <ClearHistory setTodos={setTodos} />
             <Filter filter ={filter} setFilter={setFilter} screen ={screen}/>

@@ -1,9 +1,10 @@
-
+import searchIcon from '../assets/search.png'
 function SearchBar() {
   return (
-    <div>
+    <div className='flex items-center gap-2 '>
+        <img src={searchIcon} className='h-4' alt="" />
       <input
-      className="px-3 py-2 border font-medium rounded-lg min-w-2xl"
+      className="px-3 py-2 border rounded-lg min-w-2xl"
       type="text"
       placeholder="search"/>
     </div>
