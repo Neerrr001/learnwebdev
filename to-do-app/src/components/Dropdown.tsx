@@ -1,12 +1,27 @@
 
 import type { Todo } from "../types"
 
-type 
+type dropdownProps = {
+    results: Todo[]
+}
 
-function Dropdown() {
+function Dropdown({results}:dropdownProps) {
   return (
-    <div>
-      
+    <div className="absolute ml-6 w-full bg-white rounded-lg top-full left-0 shadow-xl mt-1">
+        {(results.length === 0)? (
+            <div className="p-3 hover:bg-gray-100 ">
+                No matching results
+            </div>
+        ): (results.map((todo)=>(
+
+            <div 
+            key={todo.id}
+            className="p-3 cursor-pointer hover:bg-gray-100">
+               {todo.title}
+            </div>
+
+        )))}
+        
     </div>
   )
 }

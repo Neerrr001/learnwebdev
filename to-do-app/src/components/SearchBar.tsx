@@ -14,7 +14,7 @@ function SearchBar({search, setSearch, results}: searchBarProps) {
     <div className='flex relative items-center gap-2 '>
         <img src={searchIcon} className='h-4' alt="" />
         <input
-        className="px-3 py-2 border rounded-lg min-w-2xl"
+        className="px-3 py-2  border rounded-lg min-w-2xl"
         type="text"
         placeholder="Search"
         value={search}
@@ -26,7 +26,6 @@ function SearchBar({search, setSearch, results}: searchBarProps) {
             {search.trim() !== "" &&
             <Dropdown results={results}/>
             }
-
         </div>
     </div>
   )
