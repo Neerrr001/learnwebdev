@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import DarkMode from './components/DarkMode.tsx'
 import ClearHistory from './components/ClearHistory.tsx'
@@ -27,7 +27,7 @@ function App() {
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
 
-  const todoRefs = useRef<Record<number ,HTMLDivElement | null>>({})
+  const todoRefs = useRef<Record<number ,HTMLLIElement | null>>({})
 
   //inside filter(), the callback is supposed to return a boolean 
   const visibileTodos = todos.filter(todo => {
@@ -93,7 +93,11 @@ function App() {
   }
   
   function onResultClick(todo:Todo){
-
+    const element = todoRefs.current[todo.id];
+    element?.scrollIntoView({
+      behavior:"smooth",
+      block:"center",
+    })
 
   }
   
@@ -128,7 +132,8 @@ function App() {
       
         <div className="flex justify-center w-full gap-4 items-center h-16">
           <div className=''>
-            <SearchBar search={search} setSearch={setSearch} results={results}/>
+            <SearchBar search={search} setSearch={setSearch} results={results}
+            onResultClick={onResultClick}/>
           </div>
           <div className='flex gap-4'>
             <DarkMode toggle={toggle} screen={screen}/>
@@ -161,6 +166,9 @@ function App() {
                 className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
                 id={`todo-${todo.id}`}
                 checked={todo.completed}
+                ref={(elem)=>{
+                  todoRefs.current[todo.id] = elem;
+                }}
                 onChange ={() => handleCheckboxChange(todo.id)}
                 />
                 <label 

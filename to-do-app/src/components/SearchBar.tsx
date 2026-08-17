@@ -6,9 +6,10 @@ type searchBarProps = {
     search:string,
     setSearch: React.Dispatch<React.SetStateAction<string>>
     results:Todo[]
+    onResultClick:(todo:Todo)=>void
 }
 
-function SearchBar({search, setSearch, results}: searchBarProps) {
+function SearchBar({search, setSearch, results, onResultClick}: searchBarProps) {
 
   return (
     <div className='flex relative items-center gap-2 '>
@@ -24,7 +25,7 @@ function SearchBar({search, setSearch, results}: searchBarProps) {
         />
         <div>
             {search.trim() !== "" &&
-            <Dropdown results={results}/>
+            <Dropdown results={results} onResultClick={onResultClick}/>
             }
         </div>
     </div>
