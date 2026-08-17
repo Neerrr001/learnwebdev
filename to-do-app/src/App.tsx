@@ -117,17 +117,16 @@ function App() {
   )
 
   useEffect(() => {
-    function handleClickDown(e){
-      if(searchRef.current != e.target){
+    function handleClickDown(e:MouseEvent){
+      if(e.target instanceof Node && !searchRef.current?.contains(e.target)){
         setIsDropdownOpen(false);
       }
-
     }
     
     document.addEventListener("click", handleClickDown)
   
     return () => {
-      document.removeEventListener("keydown", handleClickDown)
+      document.removeEventListener("click", handleClickDown)
     }
   }, [])
   
