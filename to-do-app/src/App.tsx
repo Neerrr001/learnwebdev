@@ -26,6 +26,7 @@ function App() {
   })
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
+  const [highlighted, setHighlighted] = useState<number | null>(null)
 
   const todoRefs = useRef<Record<number ,HTMLLIElement | null>>({})
 
@@ -98,6 +99,10 @@ function App() {
       behavior:"smooth",
       block:"center",
     })
+    setHighlighted(todo.id);
+    setTimeout(() => {
+      setHighlighted(null)
+    }, 3000);
 
   }
   
@@ -159,16 +164,20 @@ function App() {
         </div>
         <div className='max-w-2xl '>
           <ul className=''>
-            {visibileTodos.map((todo,idx) =>(
-              <li className='flex justify-start items-center gap-2 w-full' key={idx}>
+            {visibileTodos.map((todo) =>(
+              <li 
+              className={`flex justify-start items-center gap-2 w-full 
+              ${highlighted === todo.id ? "px-1 bg-gray-300 ring-1 transition" : ""}`} 
+              ref={(elem)=>{
+                  todoRefs.current[todo.id] = elem;
+                }}
+              key={todo.id}>
                 <input
                 type="checkbox"
                 className=' border-2 cursor-pointer border-gray-400 hover:border-gray-950'
                 id={`todo-${todo.id}`}
                 checked={todo.completed}
-                ref={(elem)=>{
-                  todoRefs.current[todo.id] = elem;
-                }}
+                
                 onChange ={() => handleCheckboxChange(todo.id)}
                 />
                 <label 
