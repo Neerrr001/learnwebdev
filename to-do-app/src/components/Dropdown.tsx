@@ -13,7 +13,7 @@ function Dropdown({results, onResultClick}:dropdownProps) {
             <div className="p-3 text-gray-500 hover:bg-gray-100 ">
                 No matching results
             </div>
-        ): (results.map((todo)=>(
+        ):(results.map((todo)=>(
             <div 
             key={todo.id}
             className="p-3 cursor-pointer hover:bg-gray-100"

@@ -7,9 +7,11 @@ type searchBarProps = {
     setSearch: React.Dispatch<React.SetStateAction<string>>
     results:Todo[]
     onResultClick:(todo:Todo)=>void
+    isDropdownOpen: boolean
+    setDropdownOpen:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function SearchBar({search, setSearch, results, onResultClick}: searchBarProps) {
+function SearchBar({search, setSearch, results, onResultClick, isDropdownOpen,setDropdownOpen}: searchBarProps) {
 
   return (
     <div className='flex relative items-center gap-2 '>
@@ -19,12 +21,14 @@ function SearchBar({search, setSearch, results, onResultClick}: searchBarProps) 
         type="text"
         placeholder="Search"
         value={search}
-        onChange={(e)=>
+        onChange={(e)=>{
             setSearch(e.target.value)
+            setDropdownOpen(true);
+        }
         }
         />
         <div>
-            {search.trim() !== "" &&
+            {search.trim() !== "" && isDropdownOpen && 
             <Dropdown results={results} onResultClick={onResultClick}/>
             }
         </div>

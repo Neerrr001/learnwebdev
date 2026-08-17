@@ -27,8 +27,10 @@ function App() {
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
   const [highlighted, setHighlighted] = useState<number | null>(null)
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
   const todoRefs = useRef<Record<number ,HTMLLIElement | null>>({})
+  const searchRef = useRef<HTMLDivElement | null>(null)
 
   //inside filter(), the callback is supposed to return a boolean 
   const visibileTodos = todos.filter(todo => {
@@ -114,6 +116,22 @@ function App() {
     todo.title.toLowerCase().startsWith(search.toLowerCase())
   )
 
+  useEffect(() => {
+    function handleClickDown(e){
+      if(searchRef.current != e.target){
+        setIsDropdownOpen(false);
+      }
+
+    }
+    
+    document.addEventListener("click", handleClickDown)
+  
+    return () => {
+      document.removeEventListener("keydown", handleClickDown)
+    }
+  }, [])
+  
+
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
@@ -136,9 +154,9 @@ function App() {
     <div className={`flex flex-col gap-4 min-h-screen ${themeBody}`}>
       
         <div className="flex justify-center w-full gap-4 items-center h-16">
-          <div className=''>
+          <div className='search' ref={searchRef}>
             <SearchBar search={search} setSearch={setSearch} results={results}
-            onResultClick={onResultClick}/>
+            onResultClick={onResultClick} isDropdownOpen={isDropdownOpen} setDropdownOpen={setIsDropdownOpen}/>
           </div>
           <div className='flex gap-4'>
             <DarkMode toggle={toggle} screen={screen}/>
