@@ -102,6 +102,7 @@ function App() {
       block:"center",
     })
     setHighlighted(todo.id);
+    setIsDropdownOpen(false);    
     setTimeout(() => {
       setHighlighted(null)
     }, 3000);
