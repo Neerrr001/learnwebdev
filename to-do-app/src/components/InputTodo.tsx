@@ -23,7 +23,7 @@ function InputTodo({input, setInput, handleKeyDown, themePlaceHolder, title, set
         />
 
         <textarea
-          className={`${themePlaceHolder} px-3 py-2 m-2 w-2xl border-none outline-none focus:outline-none`}
+          className={`${themePlaceHolder} field-sizing-content px-3 py-2 m-2 w-2xl border-none outline-none focus:outline-none`}
           placeholder="Details"
           value= {input}
           onChange={(e) => setInput(e.target.value)}
