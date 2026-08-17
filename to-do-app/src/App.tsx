@@ -105,7 +105,7 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos))
   },[todos])
 
-  const results = todos.filter((todo)=>
+  const results = visibileTodos.filter((todo)=>
     todo.title.toLowerCase().startsWith(search.toLowerCase())
   )
 
