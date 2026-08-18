@@ -76,12 +76,12 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo,title}: EditCard
                 {editingTodo &&(
                     <div>
                         <h2
-                        className="w-full p-2 text-xl font-semibold">
+                        className="w-full text-gray-900 p-2 text-xl font-semibold">
                             {editingTodo.title}
                         </h2>
 
                         <input type="text"
-                        className="w-full mt-3 p-2 border-none outline-none "
+                        className="w-full text-gray-900 mt-3 p-2 border-none outline-none "
                         value={inputText}
                         onChange={handleTodoChange} 
                         onKeyDown={handleKeyDown}/>
@@ -91,19 +91,19 @@ function EditCard({todos, setTodos, editingTodo, setEditingTodo,title}: EditCard
             </div>
             <div className="flex justify-center items-center gap-3j">
                 <button
-                className="px-3 py-2 m-2 hover:ring bg-blue-400 active:scale-95 rounded-lg cursor-pointer font-semibold"
+                className="px-3 py-2 m-2 hover:ring bg-blue-400 text-gray-900 active:scale-95 rounded-lg cursor-pointer font-semibold"
                 onClick={saveChanges}>
                 Save...
                 </button>
                 <button
-                className="px-3 py-2 m-2 hover:ring bg-gray-200 active:scale-95 rounded-lg cursor-pointer font-semibold "
+                className="px-3 py-2 m-2 hover:ring bg-gray-200 text-gray-900 active:scale-95 rounded-lg cursor-pointer font-semibold "
                 onClick={()=>{
                     setEditingTodo(null);
                 }}>
                 Cancel
                 </button>
                 <button
-                className="px-3 py-2 m-2 hover:ring bg-red-400 active:scale-95 rounded-lg cursor-pointer font-semibold "
+                className="px-3 py-2 m-2 hover:ring bg-red-400 text-gray-900 active:scale-95 rounded-lg cursor-pointer font-semibold "
                 onClick={deleteTodo}>
                     Delete
                 </button>

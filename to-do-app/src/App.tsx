@@ -10,7 +10,7 @@ import InputTodo from './components/InputTodo.tsx'
 import SearchBar from './components/SearchBar.tsx'
 function App() {
 
-  
+  //useState
   const [input, setInput] = useState<string>("")
   const [search, setSearch] = useState<string>("")
   const [title, setTitle] = useState<string>("")
@@ -36,6 +36,7 @@ function App() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
   const [selectedSearchIdx, setSelectedSearchIdx] = useState<number>(0)
 
+  //useRef
   const todoRefs = useRef<Record<number ,HTMLLIElement | null>>({})
   const searchRef = useRef<HTMLDivElement | null>(null)
 
@@ -117,6 +118,7 @@ function App() {
 
   }
   
+  //useEffects
   useEffect(()=>{
     localStorage.setItem("todos", JSON.stringify(todos))
   },[todos])
@@ -125,24 +127,22 @@ function App() {
     localStorage.setItem("screen", screen)
   },[screen])
 
-  const results = visibileTodos.filter((todo)=>
-    todo.title.toLowerCase().startsWith(search.toLowerCase())
-  )
-
+  
   useEffect(() => {
     function handleClickDown(e:MouseEvent){
       if(e.target instanceof Node && !searchRef.current?.contains(e.target)){
         setIsDropdownOpen(false);
       }
     }
-    
     document.addEventListener("click", handleClickDown)
-  
     return () => {
       document.removeEventListener("click", handleClickDown)
     }
   }, [])
   
+  const results = visibileTodos.filter((todo)=>
+    todo.title.toLowerCase().startsWith(search.toLowerCase())
+  )
 
   
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
@@ -170,7 +170,8 @@ function App() {
           <div className='search' ref={searchRef}>
             <SearchBar search={search} setSearch={setSearch} results={results}
             onResultClick={onResultClick} isDropdownOpen={isDropdownOpen} setisDropdownOpen={setIsDropdownOpen} selectedSearchIdx={selectedSearchIdx}
-            setSelectedSearchIdx = {setSelectedSearchIdx}/>
+            setSelectedSearchIdx = {setSelectedSearchIdx}
+            themePlaceHolder={themePlaceHolder} screen ={screen} />
           </div>
 
           <div className='flex gap-4'>
@@ -200,7 +201,7 @@ function App() {
             {visibileTodos.map((todo) =>(
               <li 
               className={`flex justify-start items-center gap-2 w-full 
-              ${highlighted === todo.id ? "px-1 bg-gray-300 ring-1 transition" : ""}`} 
+              ${highlighted === todo.id ? "px-1 bg-gray-300 rounded ring-1 transition" : ""}`} 
               ref={(elem)=>{
                   todoRefs.current[todo.id] = elem;
                 }}

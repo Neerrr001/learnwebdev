@@ -1,4 +1,5 @@
-import searchIcon from '../assets/search.png'
+import lmsearchIcon from '../assets/search.png'
+import dmsearchIcon from '../assets/dmsearch.png'
 import type {Todo} from '../types.ts'
 import Dropdown from './Dropdown.tsx'
 
@@ -11,17 +12,22 @@ type searchBarProps = {
     setisDropdownOpen:React.Dispatch<React.SetStateAction<boolean>>;
     selectedSearchIdx: number;
     setSelectedSearchIdx: React.Dispatch<React.SetStateAction<number>>;
+    themePlaceHolder: string,
+    screen: "light" | "dark";
 }
 
 function SearchBar({search, setSearch, results, onResultClick, isDropdownOpen,setisDropdownOpen
-    ,selectedSearchIdx, setSelectedSearchIdx
+    ,selectedSearchIdx, setSelectedSearchIdx, themePlaceHolder,screen, 
 }: searchBarProps) {
+
+    let icon; 
+    screen === "light"? icon = lmsearchIcon: icon = dmsearchIcon;
 
   return (
     <div className='flex relative items-center gap-2 '>
-        <img src={searchIcon} className='h-4' alt="" />
+        <img src={icon} className='h-4' alt="" />
         <input
-        className="px-3 py-2  border rounded-lg min-w-2xl"
+        className={` ${themePlaceHolder} px-3 py-2  border rounded-lg min-w-2xl`}
         type="text"
         placeholder="Search"
         value={search}
@@ -61,7 +67,7 @@ function SearchBar({search, setSearch, results, onResultClick, isDropdownOpen,se
         <div>
             {search.trim() !== "" && isDropdownOpen && 
             <Dropdown results={results} onResultClick={onResultClick}
-            selectedSearchIdx={selectedSearchIdx}/>
+            selectedSearchIdx={selectedSearchIdx} screen ={screen}/>
             }
         </div>
     </div>
