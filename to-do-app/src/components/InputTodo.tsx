@@ -9,7 +9,6 @@ type inputTodoProps = {
 }
 
 function InputTodo({input, setInput, handleKeyDown, themePlaceHolder, title, setTitle, handleTitleDown}: inputTodoProps) {
-
     
   return (
     <div className="flex p-2 flex-col gap-2 border rounded-lg focus-within:ring-1 ">

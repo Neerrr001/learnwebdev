@@ -10,7 +10,7 @@ function EditBtn({todo, setEditingTodo}: EditBtnProps) {
   return (
     <div>
       <button
-      className='p-2 focus:outline-none focus:ring cursor-pointer active:scale-95'
+      className='p-2 focus:outline-none  cursor-pointer active:scale-95'
       onClick={()=>{
         setEditingTodo(todo)
         
