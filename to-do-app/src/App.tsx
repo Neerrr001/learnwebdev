@@ -107,6 +107,7 @@ function App() {
     setTimeout(() => {
       setHighlighted(null)
     }, 3000);
+    setSelectedSearchIdx(0);
 
   }
   

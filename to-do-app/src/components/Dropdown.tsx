@@ -19,7 +19,7 @@ function Dropdown({results, onResultClick,selectedSearchIdx}:dropdownProps) {
         ):(results.map((todo, idx)=>(
             <div 
             key={todo.id}
-            className={` ${selectedSearchIdx === idx ? "bg-gray-200": ""} p-3 cursor-pointer hover:bg-gray-100`}
+            className={` ${selectedSearchIdx === idx ? "bg-gray-100": ""} p-3 cursor-pointer hover:bg-gray-100`}
             onClick={()=> onResultClick(todo)}>
                {todo.title}
             </div>
