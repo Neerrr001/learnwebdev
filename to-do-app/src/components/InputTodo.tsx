@@ -14,7 +14,7 @@ function InputTodo({input, setInput, handleKeyDown, themePlaceHolder, title, set
     <div className="flex p-2 flex-col gap-2 border rounded-lg focus-within:ring-1 ">
 
         <input type="text" 
-        className="px-3 py-2 m-2 font-semibold w-full border-none outline-none focus:outline-none"
+        className={`${themePlaceHolder} px-3 py-2 m-2 font-semibold w-full border-none outline-none focus:outline-none`}
         placeholder="Title"
         value={title}
         onChange={(e)=> setTitle(e.target.value)}

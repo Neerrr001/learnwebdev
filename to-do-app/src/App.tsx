@@ -11,7 +11,6 @@ import SearchBar from './components/SearchBar.tsx'
 function App() {
 
   
-  const [screen, setScreen] = useState<"light" | "dark">("light")
   const [input, setInput] = useState<string>("")
   const [search, setSearch] = useState<string>("")
   const [title, setTitle] = useState<string>("")
@@ -23,6 +22,13 @@ function App() {
       return parseTodos
     }
     return [];
+  })
+  const [screen, setScreen] = useState<"light" | "dark">(()=>{
+    const storeScreen = localStorage.getItem("screen");
+    if(storeScreen === "light" || storeScreen === "dark"){
+      return storeScreen
+    }
+    return "light";
   })
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
@@ -114,6 +120,10 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("todos", JSON.stringify(todos))
   },[todos])
+
+  useEffect(()=>{
+    localStorage.setItem("screen", screen)
+  },[screen])
 
   const results = visibileTodos.filter((todo)=>
     todo.title.toLowerCase().startsWith(search.toLowerCase())
