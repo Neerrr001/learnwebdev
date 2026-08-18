@@ -30,7 +30,11 @@ function SearchBar({search, setSearch, results, onResultClick, isDropdownOpen,se
             setisDropdownOpen(true);
         }}
         onKeyDown={(e)=>{
-            if(results.length === 0){
+            if(e.key === "Escape"){
+                setSelectedSearchIdx(0)
+                setisDropdownOpen(false)
+            }
+            else if(results.length === 0){
                 return ; 
             }
             else if(e.key === "ArrowDown"){
@@ -47,15 +51,11 @@ function SearchBar({search, setSearch, results, onResultClick, isDropdownOpen,se
                     setSelectedSearchIdx(selectedSearchIdx-1)
                 }
 
-            }else if(e.key === "Escape"){
-                setSelectedSearchIdx(0)
-                setisDropdownOpen(false)
             }
             else if(e.key === "Enter"){
                 const todo = results[selectedSearchIdx]
                 onResultClick(todo);
             }
-            console.log(selectedSearchIdx)
         }}
         />
         <div>
