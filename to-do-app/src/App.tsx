@@ -28,6 +28,7 @@ function App() {
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null)
   const [highlighted, setHighlighted] = useState<number | null>(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
+  const [selectedSearchIdx, setSelectedSearchIdx] = useState<number>(-1)
 
   const todoRefs = useRef<Record<number ,HTMLLIElement | null>>({})
   const searchRef = useRef<HTMLDivElement | null>(null)
@@ -156,7 +157,7 @@ function App() {
         <div className="flex justify-center w-full gap-4 items-center h-16">
           <div className='search' ref={searchRef}>
             <SearchBar search={search} setSearch={setSearch} results={results}
-            onResultClick={onResultClick} isDropdownOpen={isDropdownOpen} setDropdownOpen={setIsDropdownOpen}/>
+            onResultClick={onResultClick} isDropdownOpen={isDropdownOpen} setisDropdownOpen={setIsDropdownOpen}/>
           </div>
           <div className='flex gap-4'>
             <DarkMode toggle={toggle} screen={screen}/>
