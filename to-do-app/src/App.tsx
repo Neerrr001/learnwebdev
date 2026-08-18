@@ -148,6 +148,10 @@ function App() {
   const themeBody = screen === "light" ? " bg-white text-black " : "bg-gray-900 text-white "
   const themeButton = screen === "light" ? "bg-gray-100 text-black": "bg-gray-600 text-white"
   const themePlaceHolder = screen === "light"? "placeholder-gray-500": "placeholder-white"
+  const themeHighlight =
+    screen === "light"
+        ? "bg-gray-300 ring-gray-400"
+        : "bg-gray-700 ring-gray-500";
 
   const themeTodo = (screen:string, completed: boolean) => {
     if(completed === true){
@@ -201,7 +205,7 @@ function App() {
             {visibileTodos.map((todo) =>(
               <li 
               className={`flex justify-start items-center gap-2 w-full 
-              ${highlighted === todo.id ? "px-1 bg-gray-300 rounded ring-1 transition" : ""}`} 
+              ${highlighted === todo.id ? `px-1 ${themeHighlight} rounded ring-1 transition` : ""}`} 
               ref={(elem)=>{
                   todoRefs.current[todo.id] = elem;
                 }}
